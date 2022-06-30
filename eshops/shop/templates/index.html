@@ -1,0 +1,87 @@
+{% extends 'base.html' %}
+
+{% block content %} 
+<!-- shearch bar -->
+<div class="row">
+    <div class="col-md-12">
+        <form  class="card card-sm">
+            <div class="card-body row no-gutters align-items-center">
+                <div class="col">
+                    <input type="search" placeholder="Enter name product" class="form-control form-control-borderless" name="item-name" >
+                </div>
+                <div class="col-auto">
+                    <button type="submit" class="btn btn-secondary">search</button>
+                </div>  
+            </div>
+        </form>
+    </div>
+</div>
+
+<div class="container px-4 px-lg-5 mt-5">
+    <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
+
+        
+        {% for product in product_list %}
+
+        <!-- product  -->
+        <div class="col mb-5">
+            <div class="card h-100">
+                <!-- Product image-->
+                <img class="card-img-top" src="{{ product.img }}" alt="..." />
+                <!-- Product details-->
+                <div class="card-body p-4">
+                    <div class="text-center">
+                        <!-- Product name-->
+                    <h5 class="fw-bolder">{{ product.title  }}</h5>
+                        <!-- Product reviews-->
+                        <div class="d-flex justify-content-center small text-warning mb-2">
+                            <div class="bi-star-fill"></div>-
+                            <div class="bi-star-fill"></div>
+                            <div class="bi-star-fill"></div>
+                            <div class="bi-star-fill"></div> 
+                            <div class="bi-star-fill"></div>
+                        </div>
+                        <!-- Product price-->
+                        {{ product.price }}
+                    </div>
+                </div>
+                <!-- Product actions-->
+                <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                    <div class="text-center"><a class="btn btn-outline-success mt-auto" href="#">View</a></div>
+                </div>
+                <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                    <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="#">Add to cart</a></div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+
+
+    </div>
+    <div class="row mt-3">
+        <div class="clo-md-3 offset-md-4">
+            <ul class="pagination">
+                {% if product_list.has_previous %}
+                <li class="page-item">
+                    <a class="page-link" href="?page={{ product_list.previous_page_number }}">previous</a>
+                </li>
+                {% endif %}
+
+                <li class="page-item active">
+                    <a class="page-link" href="?page={{ product_list.number }}">{{ product_list.number }}</a>
+                </li>
+
+               {% if product_list.has_next %}
+                <li class="page-item">
+                    <a class="page-link" href="?page={{ product_list.next_page_number }}">next</a>
+                </li>
+                {% endif %}
+            </ul>
+        </div>
+    </div>
+</div>
+
+
+{% endblock content %}   
+
+
