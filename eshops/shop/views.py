@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import get_object_or_404, render
 from .models import Product
 from django.core.paginator import Paginator
 
@@ -22,6 +22,18 @@ def index(request):
     return render(request, 'index.html', {'product_list': product_list})
 
 
+def detail(request, pk):
+    product = get_object_or_404(Product, id=pk)
+    return render(request, 'detail.html', {'product': product })
+
+
+
+
+
+
 
 def templates(request):
     return render(request, 'templates.html')
+
+def temdetail(request):
+    return render(request, 'detail_temp.html')

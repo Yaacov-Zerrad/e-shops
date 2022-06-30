@@ -1,4 +1,13 @@
 {% extends 'base.html' %}
+{% load static %}
+
+
+{% block css %}
+<!-- Core theme CSS (includes Bootstrap)-->
+<link rel="stylesheet" href="{% static 'home/css/styles.css' %}">
+{% endblock css %}
+
+
 
 {% block content %} 
 <!-- shearch bar -->
@@ -35,26 +44,30 @@
                     <h5 class="fw-bolder">{{ product.title  }}</h5>
                         <!-- Product reviews-->
                         <div class="d-flex justify-content-center small text-warning mb-2">
-                            <div class="bi-star-fill"></div>-
+                            <div class="bi-star-fill"></div>
                             <div class="bi-star-fill"></div>
                             <div class="bi-star-fill"></div>
                             <div class="bi-star-fill"></div> 
                             <div class="bi-star-fill"></div>
                         </div>
                         <!-- Product price-->
-                        {{ product.price }}
+                        $ {{ product.price }}
                     </div>
                 </div>
                 <!-- Product actions-->
                 <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                    <div class="text-center"><a class="btn btn-outline-success mt-auto" href="#">View</a></div>
+                    <div class="text-center"><a class="btn btn-outline-success mt-auto" href="{{ product.id }}">View</a></div>
                 </div>
                 <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                    <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="#">Add to cart</a></div>
+                    <div class="text-center"><button id="{{ product.id }}" class="btn ted btn-outline-dark mt-auto " >Add to cart</button></div>
                 </div>
             </div>
         </div>
         {% endfor %}
+
+        {% block js %}
+        <script src="{% static 'home/js/scripts.js' %}"></script>
+        {% endblock js %}
 
 
     </div>

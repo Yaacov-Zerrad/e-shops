@@ -5,3 +5,29 @@
 */
 // This file is intentionally blank
 // Use this file to add JavaScript to your project
+// cart preparation
+if(localStorage.getItem('cart') == null){
+    var cart = {};
+}else{
+    cart = JSON.parse(localStorage.getItem('cart'));
+}
+// recup click
+(function(){
+    document.getElementById('cart').innerHTML = Object.keys(cart).length;
+})();
+$(document).on('click', '.ted', function(){
+    // recup id
+    var item_id = this.id.toString();
+    console.log(item_id);
+    // += nuber clik in 1one id
+    if(cart[item_id] != undefined){
+        cart[item_id] = cart[item_id] +1;
+    }else{
+        cart[item_id] = 1;
+    }
+    console.log(cart);
+    localStorage.setItem('cart', JSON.stringify(cart));
+    document.getElementById('cart').innerHTML = Object.keys(cart).length;
+    console.log(Object.keys(cart).length);
+})
+console.log('test');

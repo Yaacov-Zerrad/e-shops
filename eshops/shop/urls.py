@@ -1,12 +1,15 @@
 from django.conf import settings
 from django.urls import path
-from .views import index, templates
+from .views import detail, index, templates, temdetail
 from django.conf.urls.static import static
 
 
 urlpatterns = [
     path('', index, name='index'),
+    path('<int:pk>', detail , name='detail'),
+    
     path('tem', templates, name='templates'),
+    path('temdetail', temdetail, name='temdetail'),
     ]
 
 
