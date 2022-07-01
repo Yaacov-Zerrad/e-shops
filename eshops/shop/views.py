@@ -27,7 +27,8 @@ def detail(request, pk):
     return render(request, 'detail.html', {'product': product })
 
 
-
+def checkout(request):
+    return render(request, 'checkout.html')
 
 
 

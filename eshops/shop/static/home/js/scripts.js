@@ -64,6 +64,8 @@ function cart_list(cart){
         cart_string += ": " + document.getElementById('title-'+i).innerHTML + " x "+ cart[i] + "<br>";
         index +=1
     }
+    cart_string += "<a class='btn btn-outline-dark' href='/checkout'>Checkout</a>";
+
     
     var popoverTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="popover"]'))
     var popoverList = popoverTriggerList.map(function (popoverTriggerEl) {
@@ -76,3 +78,14 @@ cart_list(cart)
 
 
 
+$(document).on('click', '.ted',function(){
+    let cart_string = " ";
+    let index = 1;
+    cart_string = '<h5>Cart list</h5>';
+    for(let i in cart){
+        cart_string += index ;
+        cart_string += ": " + document.getElementById('title-'+i).innerHTML + " x "+ cart[i] + "<br>";
+        index +=1
+    }
+    document.getElementById('cart-popo').setAttribute('data-bs-content', cart_string)
+})
