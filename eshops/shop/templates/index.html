@@ -41,7 +41,7 @@
                 <div class="card-body p-4">
                     <div class="text-center">
                         <!-- Product name-->
-                    <h5 class="fw-bolder">{{ product.title  }}</h5>
+                    <h5 class="fw-bolder" id="title{{ product.id }}">{{ product.title  }}</h5>
                         <!-- Product reviews-->
                         <div class="d-flex justify-content-center small text-warning mb-2">
                             <div class="bi-star-fill"></div>
@@ -65,11 +65,8 @@
         </div>
         {% endfor %}
 
-        {% block js %}
-        <script src="{% static 'home/js/scripts.js' %}"></script>
-        {% endblock js %}
-
-
+        
+        
     </div>
     <div class="row mt-3">
         <div class="clo-md-3 offset-md-4">
@@ -97,4 +94,8 @@
 
 {% endblock content %}   
 
-
+{% block js %}
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+        <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+    <script src="{% static 'home/js/scripts.js' %}"></script>
+    {% endblock js %}

@@ -5,16 +5,31 @@
 */
 // This file is intentionally blank
 // Use this file to add JavaScript to your project
-// cart preparation
+// panier preparation
+
+
+
+
+
+
+
+
+
 if(localStorage.getItem('cart') == null){
     var cart = {};
+    console.log('1');
 }else{
     cart = JSON.parse(localStorage.getItem('cart'));
+    console.log('2');
 }
+console.log(cart);
 // recup click
 (function(){
-    document.getElementById('cart').innerHTML = Object.keys(cart).length;
+    if(localStorage.getItem('cart') != null){
+      document.getElementById('cart').innerHTML = Object.keys(cart).length;  
+    }
 })();
+
 $(document).on('click', '.ted', function(){
     // recup id
     var item_id = this.id.toString();
@@ -30,4 +45,18 @@ $(document).on('click', '.ted', function(){
     document.getElementById('cart').innerHTML = Object.keys(cart).length;
     console.log(Object.keys(cart).length);
 })
-console.log('test');
+
+// console.log('testr');
+
+
+// var popoverTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="popover"]'), document.getElementById('panier-popo').setAttribute('data-bs-content', 'list'))
+// var popoverList = popoverTriggerList.map(function (popoverTriggerEl) {
+//   return new bootstrap.Popover(popoverTriggerEl)
+// })
+
+var popoverTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="popover"]'))
+var popoverList = popoverTriggerList.map(function (popoverTriggerEl) {
+  return new bootstrap.Popover(popoverTriggerEl), 
+  document.getElementById('cart-popo').setAttribute('data-bs-content', 'list')
+})
+
