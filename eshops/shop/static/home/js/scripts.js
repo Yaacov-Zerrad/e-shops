@@ -10,9 +10,9 @@
 
 
 
-
-
-
+$(function () {
+    $('[data-toggle="tooltip"]').tooltip({html:true})
+  })
 
 
 if(localStorage.getItem('cart') == null){
@@ -54,9 +54,25 @@ $(document).on('click', '.ted', function(){
 //   return new bootstrap.Popover(popoverTriggerEl)
 // })
 
-var popoverTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="popover"]'))
-var popoverList = popoverTriggerList.map(function (popoverTriggerEl) {
-  return new bootstrap.Popover(popoverTriggerEl), 
-  document.getElementById('cart-popo').setAttribute('data-bs-content', 'list')
+
+function cart_list(cart){
+    let cart_string = " ";
+    let index = 1;
+    cart_string = '<h5>Cart list</h5>';
+    for(let i in cart){
+        cart_string += index ;
+        cart_string += ": " + document.getElementById('title-'+i).innerHTML + " x "+ cart[i] + "<br>";
+        index +=1
+    }
+    
+    var popoverTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="popover"]'))
+    var popoverList = popoverTriggerList.map(function (popoverTriggerEl) {
+        return new bootstrap.Popover(popoverTriggerEl, {html:true}), 
+    document.getElementById('cart-popo').setAttribute('data-bs-content', cart_string)
 })
+}
+
+cart_list(cart)
+
+
 
