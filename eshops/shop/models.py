@@ -32,4 +32,16 @@ class Product(models.Model):
     def __str__(self):
         return self.title
     
+class Order(models.Model):
+    items = models.CharField(max_length=5000)
+    name = models.CharField(max_length=100)
+    email = models.EmailField(max_length=127)
+    address = models.CharField(max_length=127)
+    city = models.CharField(max_length=127)
+    country = models.CharField(max_length=127)
+    zipcode = models.CharField(max_length=127)
+    date_added = models.DateTimeField(auto_now=True)
+    
+    def __str__(self):
+        return self.name
     

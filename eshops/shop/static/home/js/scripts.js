@@ -10,9 +10,9 @@
 
 
 
-$(function () {
-    $('[data-toggle="tooltip"]').tooltip({html:true})
-  })
+// $(function () {
+//     $('[data-toggle="tooltip"]').tooltip({html:true})
+//   })
 
 
 if(localStorage.getItem('cart') == null){
@@ -30,15 +30,19 @@ console.log(cart);
     }
 })();
 
+
 $(document).on('click', '.ted', function(){
     // recup id
     var item_id = this.id.toString();
     console.log(item_id);
     // += nuber clik in 1one id
     if(cart[item_id] != undefined){
-        cart[item_id] = cart[item_id] +1;
+        amount = cart[item_id][0] +1;
+        cart[item_id][0] = amount;
     }else{
-        cart[item_id] = 1;
+        amount = 1;
+        title = document.getElementById("title-"+item_id).innerHTML;
+        cart[item_id] = [amount, title];
     }
     console.log(cart);
     localStorage.setItem('cart', JSON.stringify(cart));
@@ -61,7 +65,7 @@ function cart_list(cart){
     cart_string = '<h5>Cart list</h5>';
     for(let i in cart){
         cart_string += index ;
-        cart_string += ": " + document.getElementById('title-'+i).innerHTML + " x "+ cart[i] + "<br>";
+        cart_string += ": " + cart[i][1] + " x "+ cart[i][0] + "<br>";
         index +=1
     }
     cart_string += "<a class='btn btn-outline-dark' href='/checkout'>Checkout</a>";
@@ -84,8 +88,33 @@ $(document).on('click', '.ted',function(){
     cart_string = '<h5>Cart list</h5>';
     for(let i in cart){
         cart_string += index ;
-        cart_string += ": " + document.getElementById('title-'+i).innerHTML + " x "+ cart[i] + "<br>";
+        cart_string += ": " + cart[i][1] + " x "+ cart[i][0] + "<br>";
         index +=1
     }
+    cart_string += "<a class='btn btn-outline-dark' href='/checkout'>Checkout</a>";
+
     document.getElementById('cart-popo').setAttribute('data-bs-content', cart_string)
 })
+
+
+// CHECKOUT
+
+for (let item in  cart) {
+    let name = cart[item][1];
+    let amount = cart[item][0];
+    let item_string = `<li class="list-group-item d-flex justify-content-between align-items-center"> ${name}
+                        <span class="badge bg-dark text-white ms-1 rounded-pill" >${amount}</span>
+                        </li>`
+    $('#items-list').append(item_string);
+}
+
+
+
+
+
+
+
+
+
+
+

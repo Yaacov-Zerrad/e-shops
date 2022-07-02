@@ -1,4 +1,6 @@
 from django.shortcuts import get_object_or_404, render
+
+from .form import OrderForm
 from .models import Product
 from django.core.paginator import Paginator
 
@@ -28,7 +30,13 @@ def detail(request, pk):
 
 
 def checkout(request):
-    return render(request, 'checkout.html')
+    form = OrderForm()
+    if request.method == "POST":
+        form = OrderForm(request.POST)
+        if form.is_valid:
+            form.save()
+            form = OrderForm()
+    return render(request, 'checkout.html', {'form': form})
 
 
 
