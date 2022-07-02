@@ -108,6 +108,9 @@ for (let item in  cart) {
     $('#items-list').append(item_string);
 }
 
+// ORDER
+
+$('#items').val(JSON.stringify(cart));
 
 
 

@@ -5,6 +5,9 @@ from .models import Order
 class OrderForm(forms.ModelForm):
     error_css_class = 'error-field'
     required_css_class = 'required-field'
+    
+
+    
     name = forms.CharField( widget=forms.TextInput(
         attrs={
             'placeholder': 'Your name',
@@ -49,10 +52,13 @@ class OrderForm(forms.ModelForm):
     
     class Meta:
         model = Order
-        fields = (
-                    'name',
-                    'email',
-                    'address' ,
-                    'city' ,
-                    'country' ,
-                    'zipcode' )
+        fields = ( '__all__'
+                    # 'name',
+                    # 'email',
+                    # 'address' ,
+                    # 'city' ,
+                    # 'country' ,
+                    # 'zipcode' 
+                    )
+        
+        widgets={'items': forms.HiddenInput()}

@@ -23,6 +23,7 @@
     <form action="" method="post">
     {% csrf_token %}
     {{ form.as_p }}
+    <input type="hidden" id="items" name="items" >
     <button type="submit" class="btn btn-dark">Order</button>
     </form>
 </div>
